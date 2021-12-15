@@ -1,7 +1,6 @@
-
-cd /storage/home/users/pjt6/fly_selective_sweeps
+cd /storage/home/users/pjt6/kitchen_flies/trimmed
 
 
 #conda activate gatk
 
-gatk --java-options '-Xmx80G' HaplotypeCaller -R /storage/home/users/Michael_Ritchie/DROS_kitchenMadness_DNAseq_20211207/genome/dmel-all-chromosome-r6.43.fasta -I /storage/home/users/Michael_Ritchie/DROS_kitchenMadness_DNAseq_20211207/bams/MR_female_sorted_marked_RG.bam -O /storage/home/users/Michael_Ritchie/DROS_kitchenMadness_DNAseq_20211207/vcfs/MR_female.vcf
+gatk --java-options '-Xmx80G' HaplotypeCaller -R /storage/home/users/pjt6/kitchen_flies/genome/dmel-all-chromosome-r6.43.fasta -I /storage/home/users/pjt6/kitchen_flies/bams/MR_female_sorted_marked_RG.bam -O /storage/home/users/pjt6/kitchen_flies/vcfs/MR_female.vcf
