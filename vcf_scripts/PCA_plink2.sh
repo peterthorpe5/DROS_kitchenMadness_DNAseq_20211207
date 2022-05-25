@@ -7,15 +7,15 @@
 pwd; hostname; date
 
 #VCF=../Goodeids.GATKHardFilt.NoMissingGenotypes.BiAllelicOnly.PrunedEvery100bp.vcf.gz
-VCF=/storage/home/users/pjt6/kitchen_flies/vcfs/merged/full_filtered/DROS_kitchen_GATK_not_filtered_full_filtered.vcf.gz
+VCF="/storage/home/users/pjt6/kitchen_flies/vcfs/dmel_kitcthen_flies.glnexus.r6.43.with_extra_split.vcf.gz"
 
 conda activate plink
 
 ### The #double-id #extra-chr #set-missing-id allows plink to run on non-model systems since plink initially designed for humans.
-#plink2 --vcf $VCF --threads 16 --double-id --allow-extra-chr --set-missing-var-ids @:# --vcf-half-call m --freq --out Goodeids
+#plink2 --vcf $VCF --threads 16 --double-id --allow-extra-chr --set-missing-var-ids @:# --vcf-half-call m --freq --out DMEL
 
 
 ### This script actually does the PCA and takes a chr file with each line specifying chr name
 while read line;do
-plink --vcf $VCF --chr $line --threads 16 --double-id --allow-extra-chr --set-missing-var-ids @:# --vcf-half-call m --pca --out Goodeid.$line.PCA
+plink --vcf $VCF --chr $line --threads 16 --double-id --allow-extra-chr --set-missing-var-ids @:# --vcf-half-call m --pca --out DEML.$line.PCA
 done < ../chromosome_list

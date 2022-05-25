@@ -1,13 +1,7 @@
 # to run pixy:
-
-# need to generate invariant vcf files first:
-https://pixy.readthedocs.io/en/latest/generating_invar/generating_invar.html
-
-then filter out indels with vcf tools etc ... 
-
 # conda activate pixy
-
-# pixy --stats pi fst dxy --vcf DROS_kitchen_GATK.g5mac3dp3.recode_sites_only.vcf.gz --populations  populations --window_size 10000 --n_cores 24 --output_folder pixy_test2  --bypass_invariant_check 'yes'
+# module load samtools
+# pixy --stats pi fst dxy --vcf DROS_kitchen_GATK_not_filtered_full_filtered_no_missing.vcf --populations  ../populations --window_size 10000 --n_cores 24 --output_folder pixy_test2  # --bypass_invariant_check 'yes'
 
 
 library(readr)

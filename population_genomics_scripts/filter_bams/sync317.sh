@@ -1,0 +1,2 @@
+cd /storage/home/users/pjt6/kitchen_flies/bams/unique_mapped/
+java -ea -Xmx9g -jar /storage/home/users/pjt6/popoolation2/mpileup2sync.jar --input ./mpileup/MR_male_MR20male1.mpileup --output ./sync/MR_male_MR20male1_java.sync --fastq-type sanger --min-qual 30 --threads 4
