@@ -14,14 +14,17 @@ import numpy as np
 from matplotlib import pyplot
 from numpy import cov
 from scipy.stats import gaussian_kde
+import os
+
 
 # make a temp_folder_for_all_the_out_files
 dest_dir = os.path.join(os.getcwd(),
-                        'All_data_pairwise')
+                        'male_comparison')
 try:
     os.makedirs(dest_dir)
 except OSError:
     print ("folder already exists, I will write over what is in there!!")
+    
 
 def test_line(line):
     """returns true lines. Not comments or blank line"""
@@ -115,6 +118,8 @@ if __name__ == '__main__':
                     continue
                 if tmp == "0.000" or tmp == "0.00" or tmp == "0.0":
                     fst = "0.001"
+                if float(logfc) < 0.0:
+                    continue
     
                 data = "%s\t%s\t%s\t%s" % (result_file, gene, fst, logfc)
                 # add the values to list for comparison below
@@ -142,10 +147,10 @@ if __name__ == '__main__':
                 xy = np.vstack([logfc_results, fst_results])
                 z = gaussian_kde(xy)(xy)
                 
-                  # plot
+                # plot
                 pyplot.figure()
                 pyplot.scatter(logfc_results, fst_results, c=z, s=50)
-                out_pdf = os.path.join(dest_dir, result_file + ".scatter_plot.pdf")
+                out_pdf = os.path.join(dest_dir, result_file + "MALE.scatter_plot.pdf")
                 
                 pyplot.title("FST vs LOG2FC: %s " % result_file)
                 pyplot.xlabel("LOG2Fold Change: Female versus Males")

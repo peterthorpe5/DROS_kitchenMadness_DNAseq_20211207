@@ -17,7 +17,7 @@ from scipy.stats import gaussian_kde
 
 # make a temp_folder_for_all_the_out_files
 dest_dir = os.path.join(os.getcwd(),
-                        'All_data_pairwise')
+                        'year_2020')
 try:
     os.makedirs(dest_dir)
 except OSError:
@@ -90,15 +90,18 @@ if __name__ == '__main__':
                                                            gene_names,
                                                            gene_to_fst)
     gene_to_logFC = parse_file("GENEs_male_fem_DMEL.isoform.counts.matrix.Female_vs_Male.edgeR.DE_results")
-    
+    out_name = os.path.join(dest_dir,  "year_2020_LOGFC.fst_RESULTS")
+    f_out = open(out_name, "w")
+    f_out.write("#comparison\tgene\tfst\tLOGFC_female_up_is_positive\n")
     for result_file, data in gene_to_fst.items():
+        if result_file.count('20') != 2:
+            continue
         print("now looking at the comparison ", result_file)
-        logfc_results = []
-        fst_results = []
         if "FEMALE" in result_file.upper() and "MALE" in result_file.upper():
-            out_name = os.path.join(dest_dir, result_file + ".fst_RESULTS")
-            f_out = open(out_name, "w")
-            f_out.write("#comparison\tgene\tfst\tLOGFC_female_up_is_positive\n")
+            tmp = result_file.upper()
+            if tmp.count("FEMALE") == 2:
+                continue
+           
             logfc_results = []
             fst_results = []
             for entry in data:
@@ -142,10 +145,10 @@ if __name__ == '__main__':
                 xy = np.vstack([logfc_results, fst_results])
                 z = gaussian_kde(xy)(xy)
                 
-                  # plot
+                # plot
                 pyplot.figure()
                 pyplot.scatter(logfc_results, fst_results, c=z, s=50)
-                out_pdf = os.path.join(dest_dir, result_file + ".scatter_plot.pdf")
+                out_pdf = os.path.join(dest_dir, result_file + ".2020.scatter_plot.pdf")
                 
                 pyplot.title("FST vs LOG2FC: %s " % result_file)
                 pyplot.xlabel("LOG2Fold Change: Female versus Males")
@@ -163,9 +166,10 @@ if __name__ == '__main__':
                 pyplot.savefig(out_pdf)
                 #pyplot.close(out_pdf)
                 pyplot.close('all')
-                f_out.close()
+
             except:
                 print("this one fucked up %s" % result_file)
+    f_out.close()
 
 
     
