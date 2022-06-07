@@ -96,7 +96,7 @@ if __name__ == '__main__':
     for result_file, data in gene_to_fst.items():
         if result_file.count('20') != 2:
             continue
-        print("now looking at the comparison ", result_file)
+        #print("now looking at the comparison ", result_file)
         if "FEMALE" in result_file.upper() and "MALE" in result_file.upper():
             tmp = result_file.upper()
             if tmp.count("FEMALE") == 2:

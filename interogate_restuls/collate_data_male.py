@@ -95,7 +95,7 @@ if __name__ == '__main__':
     gene_to_logFC = parse_file("GENEs_male_fem_DMEL.isoform.counts.matrix.Female_vs_Male.edgeR.DE_results")
     
     for result_file, data in gene_to_fst.items():
-        print("now looking at the comparison ", result_file)
+        #print("now looking at the comparison ", result_file)
         logfc_results = []
         fst_results = []
         if "FEMALE" in result_file.upper() and "MALE" in result_file.upper():
